@@ -90,8 +90,10 @@ int main()
     int c = 0;
     while (1)
     {
-        std:: cout << "Enter your command (ADD, SEARCH, EXIT): ";
+        std:: cout << "Enter your command (ADD, SEARCH, EXIT):";
         std::getline(std::cin, str);
+        if (std::cin.eof())
+            break ;
         if (i >= 8)
             i = 0;
         if (str == "EXIT")
