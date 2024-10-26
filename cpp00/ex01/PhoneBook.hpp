@@ -28,7 +28,7 @@ class PhoneBook
 {
     private:
         Contact contacts[8];
-        int index;
+        // int index;
     public:
         void set_contact(int i, Contact contact);
         Contact *get_contact(int i);

@@ -2,9 +2,9 @@
 
 int main()
 {
-     int i = 0;
+    int i = 0;
     Zombie *zombie;
-    zombie =  zombieHorde(5, "dddd");
+    zombie =  zombieHorde(5, "zombie");
 
     while (i < 5)
     {

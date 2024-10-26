@@ -7,22 +7,11 @@ std::string    get_data(std::string str)
     while (data.empty())
     {
         std::cout << str;
-        std::getline(std::cin, data);   
+        std::getline(std::cin, data);
+        if (std::cin.eof())
+            exit(0) ;  
     }
     return data;
-}
-
-Contact add_element()
-{
-    std::string str;
-    Contact contact;
-
-    contact.set_value(get_data("           entre first name :"), 0);
-    contact.set_value(get_data("           entre last name :"), 1);
-    contact.set_value(get_data("           entre nickname :"), 2);
-    contact.set_value(get_data("           entre phone number :"), 3);
-    contact.set_value(get_data("           entre darkest secre :"), 4);
-    return contact;
 }
 
 bool isValidNumber(std::string str) 
@@ -37,6 +26,22 @@ bool isValidNumber(std::string str)
             return false;
     }
     return true;
+}
+
+Contact add_element()
+{
+    std::string str;
+    Contact contact;
+
+    contact.set_value(get_data("           entre first name :"), 0);
+    contact.set_value(get_data("           entre last name :"), 1);
+    contact.set_value(get_data("           entre nickname :"), 2);
+    str = get_data("           entre phone number :");
+    while (!isValidNumber(str))
+        str = get_data("           entre phone number :");
+    contact.set_value(str, 3);
+    contact.set_value(get_data("           entre darkest secre :"), 4);
+    return contact;
 }
 
 void print(std::string str)

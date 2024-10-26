@@ -7,5 +7,10 @@ void Zombie::set(std::string name)
 
 void Zombie::announce(void)
 {
-    std::cout << name << ": BraiiiiiiinnnzzzZ...";
+    std::cout << name << ": BraiiiiiiinnnzzzZ...\n";
+}
+
+Zombie:: ~Zombie()
+{
+    std::cout << name << " destroyed\n"; 
 }
