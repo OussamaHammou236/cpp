@@ -1,7 +1,7 @@
 CXX= c++
 CXXFLAGS = -Wall -Wextra -Werror 
-NAME= main
-SRC = main.cpp 
+NAME= Harl
+SRC = main.cpp Harl.cpp 
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)

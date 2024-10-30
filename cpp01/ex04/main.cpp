@@ -26,21 +26,19 @@ int main(int ac, char **av)
 
 	while (std::getline(file, str))
 	{
-		while(str.find(s1) != std::string::npos)
+		pos = str.find(s1);
+		while (pos != std::string::npos)
 		{
+			res += str.substr(0, pos) + s2;
+			str = str.substr(pos + 1);
 			pos = str.find(s1);
-			if (pos != std::string::npos)
-			{
-				res += str.substr(0, pos) + s2;
-				str = str.substr(pos + 1);
-			}
 		}
-		if (!res.empty())
+		if (pos == std::string::npos)
 		{
-			OutFile << res;
-			
+			res += str;
 		}
+		res += "\n";
 	}
-	std::cout << res;
+	OutFile << res;
 	return (0);
 }
