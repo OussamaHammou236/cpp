@@ -1,7 +1,7 @@
 CXX= c++
 CXXFLAGS= -Wall -Wextra -Werror
 NAME= PhoneBook
-OBJ= main.cpp getrs_and_setrs.cpp
+OBJ= main.cpp Contact.cpp PhoneBook.cpp
 OBJ_O= ${OBJ:.cpp=.o}
 
 all: $(NAME)

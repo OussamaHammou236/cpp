@@ -9,7 +9,7 @@ std::string    get_data(std::string str)
         std::cout << str;
         std::getline(std::cin, data);
         if (std::cin.eof())
-            exit(0) ;  
+            exit(0);
     }
     return data;
 }
@@ -62,9 +62,9 @@ void print_elementOFclass(int i, PhoneBook book)
     for (int len = 0;len < i;len++)
     {
         std::cout << std::setw(10) << len << "|";
-        print(book.get_contact(len)->get_first_name(0));
-        print(book.get_contact(len)->get_first_name(1));
-        print(book.get_contact(len)->get_first_name(2));
+        print(book.get_contact(len)->get_value(0));
+        print(book.get_contact(len)->get_value(1));
+        print(book.get_contact(len)->get_value(2));
         std::cout << "\n";
     }
     str = get_data("            entre index :");
@@ -80,11 +80,11 @@ void print_elementOFclass(int i, PhoneBook book)
         return;
     }
     contact = book.get_contact(c);
-    std::cout << "      first name     : " << contact->get_first_name(0) << "\n";
-    std::cout << "      last name      : " << contact->get_first_name(1) << "\n";
-    std::cout << "      nickname       : " << contact->get_first_name(2)  << "\n";
-    std::cout << "      phone_number   : " << contact->get_first_name(3)  << "\n";
-    std::cout << "      darkest_secret : " << contact->get_first_name(4)  << "\n";
+    std::cout << "      first name     : " << contact->get_value(0) << "\n";
+    std::cout << "      last name      : " << contact->get_value(1) << "\n";
+    std::cout << "      nickname       : " << contact->get_value(2)  << "\n";
+    std::cout << "      phone_number   : " << contact->get_value(3)  << "\n";
+    std::cout << "      darkest_secret : " << contact->get_value(4)  << "\n";
 }
 
 int main()

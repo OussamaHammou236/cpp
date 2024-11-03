@@ -1,6 +1,6 @@
-#include "PhoneBook.hpp"
+#include "Contact.hpp"
 
-std::string Contact::get_first_name(int i)
+std::string Contact::get_value(int i)
 {
     if (i == 0)
         return first_name;
@@ -28,21 +28,4 @@ void Contact:: set_value(std::string str, int i)
         phone_number = str;
     else if (i == 4)
         darkest_secret = str;
-}
-
-void PhoneBook::set_contact(int i, Contact contact)
-{
-    if (i >= 0 && i < 8)
-    {
-        contacts[i] = contact;
-    }
-}
-
-Contact *PhoneBook::get_contact(int i)
-{
-    if (i >= 0 && i < 8)
-    {
-        return &contacts[i];
-    }
-    return NULL;
 }
