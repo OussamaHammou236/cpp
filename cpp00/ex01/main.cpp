@@ -1,10 +1,20 @@
 #include "PhoneBook.hpp"
 
+bool isPrintable(std::string str)
+{
+    for (int i = 0; str[i]; i++)
+    {
+        if (!isprint(str[i]))
+            return false;
+    }
+    return true;
+}
+
 std::string    get_data(std::string str)
 {
     std::string data;
 
-    while (data.empty())
+    while (data.empty() || !isPrintable(data))
     {
         std::cout << str;
         std::getline(std::cin, data);
