@@ -1,6 +1,6 @@
 #include "Fixed.hpp"
 
-// Fixed:: fractional = 8;
+const int Fixed:: fractional = 8;
 
 Fixed:: Fixed(void)
 {
@@ -10,13 +10,13 @@ Fixed:: Fixed(void)
 
 Fixed:: Fixed(Fixed &instens)
 {
-    FixedPointe = instens.FixedPointe;
+    FixedPointe = instens.getRawBits();
     std::cout << "Copy constructor called" << std::endl;
 }
 
 void Fixed:: operator=(Fixed &instens)
 {
-    FixedPointe = instens.FixedPointe;
+    FixedPointe = instens.getRawBits();
     std::cout << "Copy assignment operator calle" << std::endl;
 }
 
