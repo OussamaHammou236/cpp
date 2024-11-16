@@ -1,5 +1,7 @@
 #include "Fixed.hpp"
 
+const int Fixed:: fractional = 8;
+
 Fixed:: Fixed(void) {FixedPointe = 0; std::cout << "Default constructor called" << std::endl; }
 Fixed:: ~Fixed(void) { std::cout << "Destructor called" << std::endl; }
 
