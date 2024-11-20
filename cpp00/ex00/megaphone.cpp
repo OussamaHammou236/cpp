@@ -1,13 +1,15 @@
 #include <string>
 #include <iostream>
-#include <cctype>
 
 int main(int ac, char **av)
 {
     int i = 1;
     int j;
     if (ac == 1)
-        std::cout << "OUD AND UNBEARABLE FEEDBACK NOIS";
+    {
+        std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
+        return (1);
+    }
     while (av[i])
     {
         j = 0;
@@ -19,6 +21,6 @@ int main(int ac, char **av)
         i++;
         
     }
-    std::cout << "\n";
+    std::cout << std::endl;
     return 0;
 }

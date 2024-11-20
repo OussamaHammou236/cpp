@@ -21,7 +21,6 @@ class Contact
     public:
         std:: string get_value(int i);
         void set_value(std::string str, int i);
-
 };
 
 

@@ -10,21 +10,7 @@ bool isPrintable(std::string str)
     return true;
 }
 
-std::string    get_data(std::string str)
-{
-    std::string data;
-
-    while (data.empty() || !isPrintable(data))
-    {
-        std::cout << str;
-        std::getline(std::cin, data);
-        if (std::cin.eof())
-            exit(0);
-    }
-    return data;
-}
-
-bool isValidNumber(std::string str) 
+bool isValidNumber(std::string str)
 {
     size_t start = 0;
 
@@ -36,6 +22,20 @@ bool isValidNumber(std::string str)
             return false;
     }
     return true;
+}
+
+std::string get_data(std::string str)
+{
+    std::string data;
+
+    while (data.empty() || !isPrintable(data))
+    {
+        std::cout << str;
+        std::getline(std::cin, data);
+        if (std::cin.eof())
+            exit(0);
+    }
+    return data;
 }
 
 Contact add_element()
@@ -125,7 +125,6 @@ int main()
         else
             std::cout << "Unknown command! Please enter ADD, SEARCH, or EXIT.\n";
     }
-    return 0;
-    
+    return 0;  
 }
 
