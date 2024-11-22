@@ -32,5 +32,4 @@ void Harla:: complain(std::string level)
             return ;
         }
     }
-    std::cout << "Unknown complaint level: " << level << "\n";
 }

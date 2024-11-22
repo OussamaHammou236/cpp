@@ -30,35 +30,23 @@ void Harla:: complain(std::string level)
 {
     void (Harla::*ptr[])(void) = {&Harla::debug, &Harla::info, &Harla::warning, &Harla::error};
     std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-    for (int i = 0; i < 4; i++)
+    int i = 0;
+    while (i < 4 && levels[i] != level)
+        i++;
+    switch (i)
     {
-        if (levels[i] == level)
-        {
-            switch (i)
-            {
-                case 0:
-                    (this->*ptr[0])();
-                    (this->*ptr[1])();
-                    (this->*ptr[2])();
-                    (this->*ptr[3])();
-                    break;
-                case 1:
-                    (this->*ptr[1])();
-                    (this->*ptr[2])();
-                    (this->*ptr[3])();
-                    break;
-                case 2:
-                    (this->*ptr[2])();
-                    (this->*ptr[3])();
-                    break;
-                case 3:
-                    (this->*ptr[3])();
-                    break;
-                default:
-                    break;
-            }
-            return ;
-        }
+        case 0:
+            (this->*ptr[0])();
+        case 1:
+            (this->*ptr[1])();
+        case 2:
+            (this->*ptr[2])();
+        case 3:
+            (this->*ptr[3])();
+            break;
+        default:
+            std::cout << "[ Probably complaining about insignificant problems ]"<< "\n";
+            break;
     }
-    std::cout << "[ Probably complaining about insignificant problems ]"<< "\n";
+    return ;
 }

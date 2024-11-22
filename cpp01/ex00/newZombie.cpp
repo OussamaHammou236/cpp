@@ -2,7 +2,9 @@
 
 Zombie *newZombie(std::string name)
 {
-    Zombie *newZombie = new Zombie;
+    Zombie *newZombie = new(std::nothrow) Zombie;
+    if (!newZombie)
+        return (NULL);
     newZombie->set(name);
     return (newZombie);
 }

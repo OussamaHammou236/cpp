@@ -1,6 +1,6 @@
 #include "Fixed.hpp"
 
-lda
+const int Fixed:: fractional = 8;
 
 Fixed:: Fixed(void) {FixedPointe = 0;}
 Fixed:: ~Fixed(void) {}

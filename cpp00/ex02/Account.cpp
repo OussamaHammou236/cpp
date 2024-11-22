@@ -115,3 +115,7 @@ Account:: ~Account( void )
     << ";closed" << std::endl;    
 }
 
+Account:: Account(void)
+{
+    
+}
