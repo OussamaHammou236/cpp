@@ -1,6 +1,6 @@
 #include "Fixed.hpp"
 
-lda
+const int Fixed:: fractional = 8;
 
 Fixed:: Fixed(void) {FixedPointe = 0;}
 Fixed:: ~Fixed(void) {}
@@ -62,7 +62,7 @@ bool Fixed::operator>=(Fixed &instens)
 	return this->FixedPointe >= instens.FixedPointe;
 }
 
-bool Fixed::operator==(Fixed &instens)
+bool Fixed::operator==(Fixed const &instens) const
 {
 	return this->FixedPointe == instens.FixedPointe;
 }
@@ -72,24 +72,36 @@ bool Fixed::operator!=(Fixed &instens)
 	return this->FixedPointe != instens.FixedPointe;
 }
 
-float Fixed::operator+(const Fixed &instens) const
+Fixed Fixed::operator+(const Fixed &instens) const
 {
-    return toFloat() + instens.toFloat();
+	Fixed obj;
+
+	obj.FixedPointe = FixedPointe + instens.FixedPointe;
+    return (obj);
 }
 
-float Fixed::operator*(const Fixed &instens) const
+Fixed Fixed::operator*(const Fixed &instens) const
 {
-    return toFloat() * instens.toFloat();
+	Fixed obj;
+
+	obj.FixedPointe = (FixedPointe * instens.FixedPointe) / (1 << fractional);
+	return (obj);
 }
 
-float Fixed::operator-(const Fixed &instens) const
+Fixed Fixed::operator-(const Fixed &instens) const
 {
-    return toFloat() - instens.toFloat();
+	Fixed obj;
+
+	obj.FixedPointe = FixedPointe - instens.FixedPointe;
+    return (obj);
 }
 
-float Fixed::operator/(const Fixed &instens) const
+Fixed Fixed::operator/(const Fixed &instens) const
 {
-    return toFloat() / instens.toFloat();
+    Fixed obj;
+
+	obj.FixedPointe = (FixedPointe * 256) / instens.FixedPointe;
+	return (obj);
 }
 
 Fixed& Fixed::operator++()
@@ -116,4 +128,14 @@ float Fixed::max(const Fixed &obj1, const Fixed &obj2)
 	if (obj1.toFloat() > obj2.toFloat())
 		return obj1.toFloat();
 	return obj2.toFloat();
+}
+
+int Fixed::getRawBits( void ) const
+{
+    return FixedPointe;
+}
+
+void Fixed::setRawBits( int const raw )
+{
+    FixedPointe = raw;
 }

@@ -1,5 +1,5 @@
 CXX= c++
-CXXFLAGS = -Wall -Wextra -Werror 
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME= zombie
 SRC = main.cpp newZombie.cpp randomChump.cpp  Zombie.cpp 
 OBJ = $(SRC:.cpp=.o)

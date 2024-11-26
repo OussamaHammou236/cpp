@@ -46,3 +46,14 @@ Fixed& Fixed::operator=(const Fixed &instens)
 	return (*this);
 }
 
+int Fixed::getRawBits( void ) const
+{
+    std::cout << "getRawBits member function called" << std::endl;
+    return FixedPointe;
+}
+
+void Fixed::setRawBits( int const raw )
+{
+    std::cout << "setRawBits member function called" << std::endl;
+    FixedPointe = raw;
+}

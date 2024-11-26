@@ -15,22 +15,30 @@ class Fixed
         Fixed(const Fixed& instens);
         Fixed(void);
         ~Fixed(void);
+
         float toFloat( void ) const;
         int toInt( void ) const;
+        int getRawBits( void ) const;
+        void setRawBits( int const raw );
+
         friend std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
         Fixed& operator=(const Fixed &instens);
+
         bool operator>( const Fixed &instens) const;
         bool operator<( Fixed &instens);
         bool operator<=( Fixed &instens);
         bool operator>=( Fixed &instens);
         bool operator==( Fixed &instens);
         bool operator!=( Fixed &instens);
-        float operator+(const Fixed &instens) const;
-        float operator*(const Fixed &instens) const;
-        float operator-(const Fixed &instens) const;
-        float operator/(const Fixed &instens) const;
+
+        Fixed operator+(const Fixed &instens) const;
+        Fixed operator*(const Fixed &instens) const;
+        Fixed operator-(const Fixed &instens) const;
+        Fixed operator/(const Fixed &instens) const;
+
         Fixed operator++(int);
         Fixed& operator++();
+
         static float min(const Fixed &obj1, const Fixed &obj2);
         static float max(const Fixed &obj1, const Fixed &obj2);
 };

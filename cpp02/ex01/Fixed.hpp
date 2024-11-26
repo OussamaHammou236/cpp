@@ -15,6 +15,8 @@ class Fixed
         Fixed(const Fixed& instens);
         Fixed(void);
         ~Fixed(void);
+        int getRawBits( void ) const;
+        void setRawBits( int const raw );
         float toFloat( void ) const;
         int toInt( void ) const;
         friend std::ostream& operator<<(std::ostream& os, const Fixed& fixed);

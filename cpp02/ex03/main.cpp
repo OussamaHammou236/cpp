@@ -2,9 +2,9 @@
 
 int main()
 {
-    Point a(0.0f, 0.0f);
-    Point b(5.0f, 0.0f);
-    Point c(2.5f, 5.0f);
-    Point d(2.5f, 0.30f);
+    Point a(2, 1);
+    Point b(6,1);
+    Point c(4, 4);
+    Point d(3, 2);
     std::cout << bsp(a, b, c, d) << std::endl;
 }
