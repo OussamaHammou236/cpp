@@ -19,8 +19,9 @@ Fixed:: Fixed(const float number)
 
 Fixed:: Fixed(const Fixed& instens)
 {
-	FixedPointe = instens.FixedPointe;
 	std::cout << "Copy constructor called" << std::endl;
+	// FixedPointe = instens.FixedPointe;
+	*this = instens;
 }
 
 float Fixed:: toFloat( void ) const
@@ -41,8 +42,8 @@ std::ostream& operator<<(std::ostream& os, const Fixed& fixed)
 
 Fixed& Fixed::operator=(const Fixed &instens)
 {
-	FixedPointe = instens.FixedPointe;
 	std::cout << "Copy assignment operator called" << std::endl;
+	FixedPointe = instens.FixedPointe;
 	return (*this);
 }
 
