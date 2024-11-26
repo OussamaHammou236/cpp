@@ -21,4 +21,3 @@ bool bsp( Point const a, Point const b, Point const c, Point const point)
     Fixed res = Area_of_triangle(a, c, point) + Area_of_triangle(a, b, point) + Area_of_triangle(c, b, point);
     return (res == Area_of_triangle(a, b, c));
 }
-

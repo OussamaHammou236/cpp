@@ -25,11 +25,11 @@ class Fixed
         Fixed& operator=(const Fixed &instens);
 
         bool operator>( const Fixed &instens) const;
-        bool operator<( Fixed &instens);
-        bool operator<=( Fixed &instens);
-        bool operator>=( Fixed &instens);
-        bool operator==( Fixed const &instens) const;
-        bool operator!=( Fixed &instens);
+        bool operator<( const Fixed &instens) const ;
+        bool operator<=( const Fixed &instens) const;
+        bool operator>=( const Fixed &instens) const;
+        bool operator==( const Fixed &instens) const;
+        bool operator!=( const Fixed &instens) const;
 
         Fixed operator+(const Fixed &instens) const;
         Fixed operator*(const Fixed &instens) const;
@@ -39,8 +39,10 @@ class Fixed
         Fixed operator++(int);
         Fixed& operator++();
 
-        static float min(const Fixed &obj1, const Fixed &obj2);
-        static float max(const Fixed &obj1, const Fixed &obj2);
+        static  Fixed& min( Fixed &obj1,  Fixed &obj2);
+        static Fixed& max( Fixed &obj1,  Fixed &obj2);
+        static const Fixed& min(const Fixed &obj1, const Fixed &obj2);
+        static const Fixed& max(const Fixed &obj1, const Fixed &obj2);
 };
 
 

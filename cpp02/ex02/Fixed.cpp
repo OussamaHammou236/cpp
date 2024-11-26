@@ -47,27 +47,27 @@ bool Fixed::operator>(const Fixed &instens) const
 	return this->FixedPointe > instens.FixedPointe;
 }
 
-bool Fixed::operator<( Fixed &instens)
+bool Fixed::operator<(const Fixed &instens) const
 {
 	return this->FixedPointe < instens.FixedPointe;
 }
 
-bool Fixed::operator<=(Fixed &instens)
+bool Fixed::operator<=(const Fixed &instens) const
 {
 	return this->FixedPointe <= instens.FixedPointe;
 }
 
-bool Fixed::operator>=(Fixed &instens)
+bool Fixed::operator>=(const Fixed &instens) const
 {
 	return this->FixedPointe >= instens.FixedPointe;
 }
 
-bool Fixed::operator==(Fixed &instens)
+bool Fixed::operator==(const Fixed &instens) const
 {
 	return this->FixedPointe == instens.FixedPointe;
 }
 
-bool Fixed::operator!=(Fixed &instens)
+bool Fixed::operator!=(const Fixed &instens) const
 {
 	return this->FixedPointe != instens.FixedPointe;
 }
@@ -116,18 +116,32 @@ Fixed Fixed::operator++(int) {
     return temp;
 }
 
-float Fixed::min(const Fixed &obj1,const Fixed &obj2)
+Fixed &Fixed::min(Fixed &obj1, Fixed &obj2)
 {
-	if (obj1.toFloat() < obj2.toFloat())
-		return obj1.toFloat();
-	return obj2.toFloat();
+	if (obj1 < obj2)
+		return obj1;
+	return obj2;
 }
 
-float Fixed::max(const Fixed &obj1, const Fixed &obj2)
+Fixed &Fixed::max(Fixed &obj1, Fixed &obj2)
 {
-	if (obj1.toFloat() > obj2.toFloat())
-		return obj1.toFloat();
-	return obj2.toFloat();
+	if (obj1 > obj2)
+		return obj1;
+	return obj2;
+}
+
+const Fixed& Fixed::min(const Fixed &obj1, const Fixed &obj2)
+{
+	if (obj1 < obj2)
+		return obj1;
+	return obj2;
+}
+
+const Fixed& Fixed::max(const Fixed &obj1, const Fixed &obj2)
+{
+	if (obj1 > obj2)
+		return obj1;
+	return obj2;
 }
 
 int Fixed::getRawBits( void ) const
