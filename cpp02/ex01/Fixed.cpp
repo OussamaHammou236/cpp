@@ -20,7 +20,6 @@ Fixed:: Fixed(const float number)
 Fixed:: Fixed(const Fixed& instens)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	// FixedPointe = instens.FixedPointe;
 	*this = instens;
 }
 

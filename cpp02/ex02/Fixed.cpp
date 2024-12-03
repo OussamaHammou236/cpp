@@ -84,7 +84,7 @@ Fixed Fixed::operator*(const Fixed &instens) const
 {
 	Fixed obj;
 
-	obj.FixedPointe = (FixedPointe * instens.FixedPointe) / (1 << fractional);
+	obj.FixedPointe = (long long)(FixedPointe * instens.FixedPointe) / (1 << fractional);
 	return (obj);
 }
 
@@ -113,6 +113,18 @@ Fixed& Fixed::operator++()
 Fixed Fixed::operator++(int) {
     Fixed temp = *this;
     FixedPointe++;
+    return temp;
+}
+
+Fixed& Fixed::operator--()
+{
+	FixedPointe--;
+	return (*this);
+}
+
+Fixed Fixed::operator--(int) {
+    Fixed temp = *this;
+    FixedPointe--;
     return temp;
 }
 

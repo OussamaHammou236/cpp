@@ -14,10 +14,11 @@ Fixed:: Fixed(Fixed &instens)
     FixedPointe = instens.getRawBits();
 }
 
-void Fixed:: operator=(Fixed &instens)
+Fixed& Fixed:: operator=(Fixed &instens)
 {
     std::cout << "Copy assignment operator calle" << std::endl;
     FixedPointe = instens.getRawBits();
+    return (*this);
 }
 
 int Fixed::getRawBits( void ) const

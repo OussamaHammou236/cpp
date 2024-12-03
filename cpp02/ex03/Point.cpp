@@ -1,14 +1,13 @@
 #include "Point.hpp"
 
 Point:: Point(void) : x(0), y(0){}
-Point:: Point(float x, float y): x(x), y(y) {}
-Point:: Point(Point& instens): x(instens.x), y(instens.y){}
+Point:: Point(const float x, const float y): x(x), y(y) {}
+Point:: Point(const Point& instens): x(instens.x), y(instens.y){}
 
-Point& Point::operator=(Point& instens)
+const Point& Point::operator=(const Point& instens) const
 {
-    if (this == &instens)
-        return *this;
-    return instens;
+    (void)instens;
+    return *this;
 }
 
 Point:: ~Point(void) {}
