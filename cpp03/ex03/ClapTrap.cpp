@@ -6,7 +6,7 @@ ClapTrap:: ClapTrap(void)
     _name = "anonym";
     _hit_point = 10;
     _energy_point = 10;
-    _attack_damage = 0; 
+    _attack_damage = 0;
     std::cout << "the default constructor called" << std::endl;
 }
 
@@ -54,7 +54,7 @@ void ClapTrap:: attack(const std::string& target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-    if (_hit_point - amount < 0)
+    if (!_hit_point)
     {
         std::cout << "the operation refused because he not have a hit point" << std::endl;
         return ;
