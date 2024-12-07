@@ -10,10 +10,9 @@ DiamondTrap::DiamondTrap(void)
     std::cout << "DiamondTrap: the default constructor called" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(std::string name)
+DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), FragTrap(name + "_clap_name"), ScavTrap(name + "_clap_name")
 {
     _name = name;
-    ClapTrap::_name = _name + "_clap_name";
     _hit_point = FragTrap::_hit_point;
     _energy_point = ScavTrap::_energy_point;
     _attack_damage = FragTrap::_attack_damage;
@@ -32,6 +31,8 @@ DiamondTrap::DiamondTrap(DiamondTrap &obj)
 
 DiamondTrap& DiamondTrap::operator=(DiamondTrap &obj)
 {
+    if (this == &obj)
+        return *this;
     _name = obj._name;
     ClapTrap::_name = obj._name + "_clap_name";
     _hit_point = obj._hit_point;
@@ -49,13 +50,14 @@ void DiamondTrap::whoAmI()
 {
     if (_hit_point <= 0)
     {
-        std::cout << "the DiamondTrap not have hit_point" << std::endl;
+        std::cout << "the DiamondTrap have no hit_point" << std::endl;
         return ;
     }
-    std::cout << "the DiamondTrap name is " << _name << std::endl;
+    std::cout << "My DiamondTrap name is " << _name << std::endl;
+    std::cout << "The ClapTrap name is " << ClapTrap::_name << std::endl;
 }
 
-void DiamondTrap::attack(std::string &target)
+void DiamondTrap::attack(std::string target)
 {
     ScavTrap::attack(target);
 }
