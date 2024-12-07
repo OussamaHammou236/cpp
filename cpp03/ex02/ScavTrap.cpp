@@ -35,10 +35,29 @@ ScavTrap& ScavTrap:: operator=(ScavTrap &instens)
     _hit_point = instens._hit_point;
     _energy_point = instens._energy_point;
     _attack_damage = instens._attack_damage;
+    std::cout << "ScavTrap: Copy assignment operator called" << std::endl;
     return (*this);
+}
+
+ScavTrap:: ~ScavTrap(void)
+{
+    std::cout << "ScavTrap: the destructor  called" << std::endl;
 }
 
 void ScavTrap::guardGate()
 {
     std::cout << "the ScavTrap is now in Gate keeper mode" << std::endl;
+}
+
+void ScavTrap:: attack(std::string& target)
+{
+    if (!_hit_point || !_energy_point)
+    {
+        std::cout << "the Attack refused" << std::endl;
+        return ;
+    }
+    std::cout << "ScavTrap "<< _name 
+              << " attacks " << target << ", causing " << _attack_damage 
+              << " points of damage!" << std::endl;
+    _energy_point--;
 }

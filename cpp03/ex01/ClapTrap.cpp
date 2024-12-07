@@ -1,13 +1,13 @@
 #include "ClapTrap.hpp"
 
-ClapTrap:: ~ClapTrap(void) { std::cout << "the destructor  called" << std::endl; }
+ClapTrap:: ~ClapTrap(void) { std::cout << "ClapTrap: the destructor  called" << std::endl; }
 ClapTrap:: ClapTrap(void)
 {
     _name = "anonym";
     _hit_point = 10;
     _energy_point = 10;
     _attack_damage = 0; 
-    std::cout << "the default constructor called" << std::endl;
+    std::cout << "ClapTrap: the default constructor called" << std::endl;
 }
 
 ClapTrap:: ClapTrap(std::string name)
@@ -16,7 +16,7 @@ ClapTrap:: ClapTrap(std::string name)
     _hit_point = 10;
     _energy_point = 10;
     _attack_damage = 0; 
-    std::cout << "the name constructor called" << std::endl;
+    std::cout << "ClapTrap: the name constructor called" << std::endl;
 }
 
 ClapTrap& ClapTrap::operator=(ClapTrap &instens)
@@ -36,14 +36,14 @@ ClapTrap:: ClapTrap(ClapTrap &instens)
     _hit_point = instens._hit_point;
     _energy_point = instens._energy_point;
     _attack_damage = instens._attack_damage;
-    std::cout << "the copy constructor called" << std::endl;
+    std::cout << "ClapTrap: the copy constructor called" << std::endl;
 }
 
 void ClapTrap:: attack(const std::string& target)
 {
     if (!_hit_point || !_energy_point)
     {
-        std::cout << "the Attack refused" << std::endl;
+        std::cout << "ClapTrap: the Attack refused" << std::endl;
         return ;
     }
     std::cout << "ClapTrap "<< _name 
@@ -56,7 +56,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 {
     if (_hit_point - amount < 0)
     {
-        std::cout << "the operation refused because he not have a hit point" << std::endl;
+        std::cout << "ClapTrap: the operation refused because he not have a hit point" << std::endl;
         return ;
     }
     _hit_point -= amount;
@@ -66,7 +66,7 @@ void ClapTrap::beRepaired(unsigned int amount)
 {
     if (!_energy_point)
     {
-        std::cout << "the Attack refused" << std::endl;
+        std::cout << "ClapTrap: the operation refused" << std::endl;
         return ;
     }
     _hit_point += amount;

@@ -1,7 +1,9 @@
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main()
 {
-    FragTrap test;
-    test.highFivesGuys();
+    DiamondTrap d1("testTrap");
+    std::string a = "ouss";
+    d1.attack(a);
+    // d1.whoAmI();/
 }

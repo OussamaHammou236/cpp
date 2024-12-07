@@ -66,7 +66,7 @@ void ClapTrap::beRepaired(unsigned int amount)
 {
     if (!_energy_point)
     {
-        std::cout << "the Attack refused" << std::endl;
+        std::cout << "ClapTrap: the operation refused" << std::endl;
         return ;
     }
     _hit_point += amount;
