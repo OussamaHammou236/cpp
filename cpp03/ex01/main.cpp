@@ -3,5 +3,6 @@
 int main()
 {
     ScavTrap test;
-    test.attack("ta");
+    std::string target = "ddd";
+    test.attack(target);
 }
