@@ -19,19 +19,24 @@ std::string const & AMateria::getType() const
 AMateria:: AMateria(AMateria &instance)
 {
     _type = instance._type;
+    std::cout << "AMateria: the copy constructor called" << std::endl;
 }
 
 
 AMateria& AMateria:: operator=(AMateria &instance)
 {
+    if (this == &instance)
+        return *this;
     _type = instance._type;
+    return *this;
 }
-// void AMateria:: use(ICharacter& target)
-// {
 
-// }
+void AMateria:: use(ICharacter& target)
+{
+   std::cout << "the use function called with " + target.getName() << std::endl; 
+}
 
 AMateria:: ~AMateria()
 {
-    std::cout << "the dustractor called" << std::endl;
+    std::cout << "AMateria: the dustractor called" << std::endl;
 }
