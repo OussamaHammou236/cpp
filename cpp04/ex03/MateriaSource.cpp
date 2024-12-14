@@ -12,6 +12,7 @@ void MateriaSource::learnMateria(AMateria *matria)
     int i = 0;
     while (materiaS[i])
         i++;
+    std::cout << "gg\n";
     if (i >= 4)
         return;
     materiaS[i] = matria;

@@ -8,6 +8,7 @@ Cure:: Cure(std::string type)
 
 Cure:: Cure(void)
 {
+    _type = "cure";
     std::cout << "Cure: the default constructor called" << std::endl;
 }
 

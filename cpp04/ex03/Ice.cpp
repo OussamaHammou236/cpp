@@ -8,6 +8,7 @@ Ice:: Ice(std::string type)
 
 Ice:: Ice(void)
 {
+    _type = "ice";
     std::cout << "Ice: the default constructor called" << std::endl;
 }
 
