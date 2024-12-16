@@ -30,10 +30,11 @@ int main()
     me->equip(tmp);
     tmp = src->createMateria("ice");
     me->equip(tmp);
-    me->unequip(0);
-    std::cout << "trrr\n";
-    me->unequip(1);
+    // me->unequip(0);
     me->unequip(2);
+    // tmp = src->createMateria("ice");
+    me->equip(tmp);
+    // me->unequip(2);
 
     delete src;
     delete me;

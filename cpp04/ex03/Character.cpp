@@ -15,9 +15,10 @@ void Character:: equip(AMateria* m)
     int i = 0;
     while (Materia[i])
         i++;
-    if (i >= 4)
+    if (i >= 4 )
         return ;
     Materia[i] = m;
+
 }
 
 bool check_list(Garbage *list, AMateria *adr)
@@ -28,6 +29,21 @@ bool check_list(Garbage *list, AMateria *adr)
         if (adr == list->adr)
             return false;
         list = list->next;
+    }
+    return true;
+}
+
+bool check_materia(Garbage **list, AMateria *adr)
+{
+
+    while (list)
+    {
+        if (adr == (*list)->adr)
+        {
+            (*list)->adr = NULL;
+            return false;
+        }
+        *list = (*list)->next;
     }
     return true;
 }
@@ -88,11 +104,12 @@ Character:: ~Character(void)
 {
     std::cout << "Character: the dustractor called" << std::endl;
     cont--;
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i <= 3; i++)
     {
-        if (check_list(_tmp, Materia[i]))
-            delete Materia[i];
+        check_materia(&_tmp, Materia[i]);
+        delete Materia[i];
     }
+
     if (cont <= 0)
         cleanUp();
 }
