@@ -10,16 +10,25 @@ std::string const & Character:: getName() const
     return _name;
 }
 
-void Character:: equip(AMateria* m)
-{
-    int i = 0;
-    while (Materia[i])
-        i++;
-    if (i >= 4 )
-        return ;
-    Materia[i] = m;
 
+
+void Character::equip(AMateria* m)
+{
+    for (int i = 0; i < 4; i++)
+    {
+        if (Materia[i] == m)
+            return;
+    }
+    for (int i = 0; i < 4; i++)
+    {
+        if (Materia[i] == nullptr)
+        {
+            Materia[i] = m;
+            return;
+        }
+    }
 }
+
 
 bool check_list(Garbage *list, AMateria *adr)
 {
@@ -33,20 +42,23 @@ bool check_list(Garbage *list, AMateria *adr)
     return true;
 }
 
-bool check_materia(Garbage **list, AMateria *adr)
+bool check_materia(Garbage **tmp, AMateria *adr)
 {
+    Garbage *list = *tmp;
 
     while (list)
     {
-        if (adr == (*list)->adr)
+        if (adr == list->adr)
         {
-            (*list)->adr = NULL;
+            list->adr = NULL;
             return false;
         }
-        *list = (*list)->next;
+        list = list->next;
     }
     return true;
 }
+
+
 
 void Character:: unequip(int idx)
 {
@@ -55,6 +67,7 @@ void Character:: unequip(int idx)
         return;
     if (!gc)
     {
+        std::cout << "true\n";
         gc = new Garbage(Materia[idx]);
         _tmp = gc;
     }
@@ -106,20 +119,23 @@ Character:: ~Character(void)
     cont--;
     for (int i = 0; i <= 3; i++)
     {
-        check_materia(&_tmp, Materia[i]);
+        std::cout << check_materia(&_tmp,  Materia[i]) << std::endl;
         delete Materia[i];
     }
 
     if (cont <= 0)
+    {
+        std::cout << "I'm here\n";
         cleanUp();
+    }
 }
 
 void Character:: cleanUp()
 {
     Garbage *tmp;
+    std::cout << "is clean ..." << std::endl;
     while (_tmp)
     {
-        std::cout << "is clean ..." << std::endl;
         tmp = _tmp;
         _tmp = _tmp->next;
         delete tmp;

@@ -26,12 +26,13 @@ int main()
     tmp = src->createMateria("ice");
     ICharacter* me = new Character("me");
     me->equip(tmp);
+    me->unequip(0);     
     tmp = src->createMateria("ice");
     me->equip(tmp);
     tmp = src->createMateria("ice");
     me->equip(tmp);
     // me->unequip(0);
-    me->unequip(2);
+    // me->unequip(2);
     // tmp = src->createMateria("ice");
     me->equip(tmp);
     // me->unequip(2);
