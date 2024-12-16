@@ -1,14 +1,15 @@
 #ifndef GARBAGECOLLECTOR_HPP
 #define GARBAGECOLLECTOR_HPP
-
+#include <iostream>
+#include "AMateria.hpp"
 struct Garbage
 {
-    void *adr;
+    AMateria *adr;
     Garbage *next;
 
     Garbage(void);
-    Garbage(void *adr);
-    Garbage(void *adr, Garbage *next);
+    Garbage(AMateria *adr);
+    Garbage(AMateria *adr, Garbage *next);
     ~Garbage();
 };
 

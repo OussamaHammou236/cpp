@@ -11,6 +11,7 @@ class Character : public ICharacter
         std::string _name;
         AMateria *Materia[4];
         static Garbage *gc;
+        static Garbage *_tmp;
         static int cont;
     public:
         Character(void);
@@ -25,6 +26,8 @@ class Character : public ICharacter
         void unequip(int idx);
         void use(int idx, ICharacter& target);
 
+
+        void cleanUp();
         
 };
 

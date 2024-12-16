@@ -5,6 +5,8 @@
 MateriaSource:: ~MateriaSource()
 {
     std::cout << "MateriaSource: the dustractor called" << std::endl;
+    for (int i = 0; i < 4; i++)
+        delete materiaS[i];
 }
 
 void MateriaSource::learnMateria(AMateria *matria)
@@ -12,7 +14,6 @@ void MateriaSource::learnMateria(AMateria *matria)
     int i = 0;
     while (materiaS[i])
         i++;
-    std::cout << "gg\n";
     if (i >= 4)
         return;
     materiaS[i] = matria;
@@ -22,10 +23,8 @@ AMateria* MateriaSource:: createMateria(std::string const & type)
 {
     for (int i = 0; i < 4; i++)
     {
-        if (materiaS[i]->getType() == type)
-        {
+        if (materiaS[i] && materiaS[i]->getType() == type)
             return materiaS[i]->clone();
-        }
     }
     return NULL;
 }

@@ -2,20 +2,22 @@
 
 Garbage:: Garbage(void)
 {
-    next = 0x0;
+    next = NULL;
 }
 
 Garbage:: ~Garbage()
 {
     delete adr;
+    std::cout << "delete adr\n";
 }
 
-Garbage::Garbage(void *adr)
+Garbage::Garbage(AMateria *adr)
 {
     this->adr = adr;
+    this->next = NULL;
 }
 
-Garbage:: Garbage(void *adr, Garbage *next)
+Garbage:: Garbage(AMateria *adr, Garbage *next)
 {
     this->adr = adr;
     this->next = next;
