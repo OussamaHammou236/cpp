@@ -11,13 +11,18 @@ MateriaSource:: ~MateriaSource()
 
 void MateriaSource:: learnMateria(AMateria *matria)
 {
-    int i = 0;
-    while (materiaS[i])
-        i++;
-    if (i >= 4)
-        return;
-    materiaS[i] = matria->clone();
-    delete matria;
+    if (!matria)
+        return ;
+    for (int i = 0;i < 4; i++)
+    {
+        if (materiaS[i] == NULL)
+        {
+            materiaS[i] = matria->clone();
+            delete matria;
+            return ;
+        }
+
+    }
 }
 
 AMateria* MateriaSource:: createMateria(std::string const & type)
@@ -33,6 +38,8 @@ AMateria* MateriaSource:: createMateria(std::string const & type)
 MateriaSource:: MateriaSource(void)
 {
     std::cout << "MateriaSource: the default constructor called" << std::endl;
+    for (int i = 0; i < 4; i++)
+        materiaS[i] = NULL;
 }
 
 MateriaSource& MateriaSource::operator=(MateriaSource &instance)
@@ -47,6 +54,7 @@ MateriaSource& MateriaSource::operator=(MateriaSource &instance)
         delete materiaS[i];
         materiaS[i] = instance.createMateria(type);
     }
+    return *this;
 }
 
 MateriaSource:: MateriaSource(MateriaSource &instance)

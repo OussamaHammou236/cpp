@@ -21,7 +21,7 @@ void Character::equip(AMateria* m)
     {
         if (Materia[i] == NULL)
         {
-            Materia[i] = m;
+            Materia[i] = m->clone();
             return;
         }
     }
@@ -65,7 +65,6 @@ void Character:: unequip(int idx)
         return;
     if (!gc)
     {
-        std::cout << "true\n";
         gc = new Garbage(Materia[idx]);
         _tmp = gc;
     }
@@ -79,7 +78,7 @@ void Character:: unequip(int idx)
 
 void Character:: use(int idx, ICharacter& target)
 {
-    if (idx >= 4 || idx < 0)
+    if (idx >= 4 || idx < 0 || !Materia[idx])
         return;
     Materia[idx]->use(target);
 }
@@ -88,12 +87,16 @@ Character:: Character(void)
 {
     std::cout << "Character: the default constructor called" << std::endl;
     cont++;
+    for (int i = 0; i < 4; i++)
+        Materia[i] = NULL;
 }
 
 Character:: Character(std::string name)
 {
     _name = name;
     cont++;
+    for (int i = 0; i < 4; i++)
+        Materia[i] = NULL;
     std::cout << "Character: the name constructor called" << std::endl;
 }
 
@@ -104,7 +107,7 @@ Character& Character:: operator=(Character &instance)
     _name = instance._name;
     for (int i = 0; i < 4; i++)
     {
-        std::cout << check_materia(&_tmp,  Materia[i]) << std::endl;
+        check_materia(&_tmp,  Materia[i]);
         delete Materia[i];
         Materia[i] = instance.Materia[i];
     }
@@ -123,21 +126,17 @@ Character:: ~Character(void)
     cont--;
     for (int i = 0; i <= 3; i++)
     {
-        std::cout << check_materia(&_tmp,  Materia[i]) << std::endl;
+        check_materia(&_tmp,  Materia[i]);
         delete Materia[i];
     }
 
     if (cont <= 0)
-    {
-        std::cout << "I'm here\n";
         cleanUp();
-    }
 }
 
 void Character:: cleanUp()
 {
     Garbage *tmp;
-    std::cout << "is clean ..." << std::endl;
     while (_tmp)
     {
         tmp = _tmp;
