@@ -10,8 +10,6 @@ std::string const & Character:: getName() const
     return _name;
 }
 
-
-
 void Character::equip(AMateria* m)
 {
     for (int i = 0; i < 4; i++)
@@ -21,7 +19,7 @@ void Character::equip(AMateria* m)
     }
     for (int i = 0; i < 4; i++)
     {
-        if (Materia[i] == nullptr)
+        if (Materia[i] == NULL)
         {
             Materia[i] = m;
             return;
@@ -63,7 +61,7 @@ bool check_materia(Garbage **tmp, AMateria *adr)
 void Character:: unequip(int idx)
 {
     // don't forget handel the memory leaks ...
-    if (idx >= 4 || !Materia[idx])
+    if (idx >= 4 || idx < 0 ||!Materia[idx])
         return;
     if (!gc)
     {
@@ -81,7 +79,7 @@ void Character:: unequip(int idx)
 
 void Character:: use(int idx, ICharacter& target)
 {
-    if (idx >= 4)
+    if (idx >= 4 || idx < 0)
         return;
     Materia[idx]->use(target);
 }
@@ -104,6 +102,12 @@ Character& Character:: operator=(Character &instance)
     if (this == &instance)
         return *this;
     _name = instance._name;
+    for (int i = 0; i < 4; i++)
+    {
+        std::cout << check_materia(&_tmp,  Materia[i]) << std::endl;
+        delete Materia[i];
+        Materia[i] = instance.Materia[i];
+    }
     return *this;
 }
 
