@@ -14,8 +14,7 @@ Dog:: ~Dog(void)
 
 Dog:: Dog(Dog &instans)
 {
-    type = instans.type;
-    test = instans.test;
+    *this = instans;
     std::cout << "Dog: the copy constructor called" << std::endl;
 }
 
@@ -23,8 +22,10 @@ Dog& Dog::operator=(Dog &instans)
 {
     if (this == &instans)
         return *this;
-    test = instans.test;
+    if (test)
+        delete test;
     type = instans.type;
+    test = new Brain(*instans.test);
     return *this;
 }
 

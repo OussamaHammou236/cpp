@@ -20,13 +20,3 @@ PrefixAnimal& PrefixAnimal::operator=(PrefixAnimal &instans)
     type = instans.type;
     return *this;
 }
-
-// void PrefixAnimal:: makeSound() const
-// {
-//     std::cout << "Animal: make Sound call" << std::endl;
-// }
-
-// std::string PrefixAnimal::getType() const
-// {
-//     return type;
-// }

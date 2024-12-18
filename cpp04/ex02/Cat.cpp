@@ -23,8 +23,10 @@ Cat& Cat::operator=(Cat &instans)
 {
     if (this == &instans)
         return *this;
+    if (test)
+        delete test;
     type = instans.type;
-    test = instans.test;
+    test = new Brain(*instans.test);
     return *this;
 }
 

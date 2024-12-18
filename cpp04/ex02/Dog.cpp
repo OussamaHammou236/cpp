@@ -23,8 +23,10 @@ Dog& Dog::operator=(Dog &instans)
 {
     if (this == &instans)
         return *this;
-    test = instans.test;
+    if (test)
+        delete test;
     type = instans.type;
+    test = new Brain(*instans.test);
     return *this;
 }
 

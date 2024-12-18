@@ -14,8 +14,7 @@ Cat:: ~Cat(void)
 
 Cat:: Cat(Cat &instans)
 {
-    type = instans.type;
-    test = instans.test;
+    *this = instans;
     std::cout << "Cat: the copy constructor called" << std::endl;
 }
 
@@ -23,8 +22,10 @@ Cat& Cat::operator=(Cat &instans)
 {
     if (this == &instans)
         return *this;
+    if (test)
+        delete test;
     type = instans.type;
-    test = instans.test;
+    test = new Brain(*instans.test);
     return *this;
 }
 
