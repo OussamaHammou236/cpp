@@ -21,7 +21,7 @@ void Character::equip(AMateria* m)
     {
         if (Materia[i] == NULL)
         {
-            Materia[i] = m->clone();
+            Materia[i] = m;
             return;
         }
     }

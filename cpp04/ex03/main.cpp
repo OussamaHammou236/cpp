@@ -9,17 +9,18 @@ int main()
 {
     IMateriaSource* src = new MateriaSource();
     src->learnMateria(new Ice());
-    src->learnMateria(NULL);
-    AMateria *dwa = src->createMateria("cdre");
-    AMateria *telj =  src->createMateria("icde");
-    ICharacter *me = new Character("simo");
-    ICharacter *you = new Character("ouss");
-
-    me->use(0, *you);
+    src->learnMateria(new Cure());
+    ICharacter* me = new Character("me");
+    AMateria* tmp;
+    tmp = src->createMateria("ice");
+    me->equip(tmp);
+    tmp = src->createMateria("cure");
+    me->equip(tmp);
+    ICharacter* bob = new Character("bob");
+    me->use(0, *bob);
+    me->use(1, *bob);
+    delete bob;
     delete me;
     delete src;
-    delete dwa;
-    delete telj;
-    delete you;
     return 0;
 }
