@@ -1,11 +1,11 @@
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm("default", 72, 45)
+RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", 72, 45)
 {
     _target = "default";
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("default", 72, 45)
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("RobotomyRequestForm", 72, 45)
 {
     _target = target;
 }
@@ -32,7 +32,6 @@ void RobotomyRequestForm::execute(Bureaucrat const & executor) const
     if (executor.getGrade() > 45)
         throw Bureaucrat::GradeTooLowException();
     std::cout << "Zzzzzzzzzzzzz..." << std::endl;
-    usleep(1000);
     srand(time(NULL));
     int random = rand() % 2;
     if (random == 0)

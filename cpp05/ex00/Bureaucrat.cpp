@@ -66,12 +66,12 @@ void Bureaucrat:: decrement_grade()
         _grade++;
 }
 
-std::string Bureaucrat:: getName() const
+std::string Bureaucrat:: getName()
 {
     return (_name);
 }
 
-int Bureaucrat::getGrade() const
+int Bureaucrat::getGrade()
 {
     return (_grade);
 }
@@ -81,19 +81,3 @@ std::ostream &operator<<(std::ostream &out, Bureaucrat &instance)
     out << instance.getName() <<", bureaucrat grade " << instance.getGrade() << std::endl;
     return out;
 } 
-
-void Bureaucrat::signForm(AForm &form)
-{
-    if (form.getGToSigned() >= _grade)
-        std::cout << _name << " signs " << form.getName() << std::endl;
-    else
-        std::cout << _name << " couldn’t sign < " << form.getName() << " because not have enough grade" << std::endl;
-}
-
-void Bureaucrat:: executeForm(AForm const & form)
-{
-    if (form.getGToExecute() >= _grade)
-        std::cout << _name << " executes " << form.getName() << std::endl;
-    else
-        std::cout << _name << " couldn’t execute " << form.getName() << " because not have enough grade" << std::endl;
-}
