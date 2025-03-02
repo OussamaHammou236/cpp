@@ -8,13 +8,13 @@
 
 class Intern
 {
-public:
-    Intern();
-    Intern(const Intern &intern);
-    ~Intern();
-    Intern &operator=(const Intern &intern);
+    public:
+        Intern();
+        Intern(const Intern &intern);
+        ~Intern();
+        Intern &operator=(const Intern &intern);
 
-    AForm *makeForm(std::string formName, std::string target);
+        AForm *makeForm(std::string formName, std::string target);
 };
 
 #endif
