@@ -25,9 +25,9 @@ Bureaucrat &Bureaucrat:: operator=(Bureaucrat &instance)
     if (this == &instance)
         return (*this);
     if (instance._grade < 1)
-        throw Bureaucrat::GradeTooLowException();
+        throw GradeTooLowException();
     else if (instance._grade > 150)
-       throw Bureaucrat::GradeTooHighException();
+       throw GradeTooHighException();
     else
         _grade = instance.getGrade();
     return (*this);
@@ -53,7 +53,7 @@ const char* Bureaucrat:: GradeTooLowException:: what()  const throw()
 void Bureaucrat:: increment_grade()
 {
     if (_grade < 2)
-        throw Bureaucrat::GradeTooLowException();
+        throw GradeTooLowException();
     else
         _grade--;
 }
@@ -61,7 +61,7 @@ void Bureaucrat:: increment_grade()
 void Bureaucrat:: decrement_grade()
 {
     if (_grade + 1 > 150)
-        throw Bureaucrat::GradeTooLowException();
+        throw GradeTooLowException();
     else
         _grade++;
 }

@@ -30,12 +30,12 @@ ShrubberyCreationForm:: ~ShrubberyCreationForm()
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
     if (executor.getGrade() > _GToExecute)
-        throw Bureaucrat::GradeTooLowException();
-    else
-    {
-        std::string name = _target + "_shrubbery";  
-        std::ofstream file(name.c_str());
-        file << "       _-_\n    /~~   ~~\\\n /~~         ~~\\\n{               }\n \\  _-     -_  /\n   ~  \\ //  ~\n_- -   | | _- _\n  _ -  | |   -_\n      // \\\n";
-        file.close();
-    }
+        throw GradeTooLowException();
+
+    std::string name = _target + "_shrubbery";  
+    std::ofstream file(name.c_str());
+    if (!file.is_open())
+        throw "cannot open the file";
+    file << "       _-_\n    /~~   ~~\\\n /~~         ~~\\\n{               }\n \\  _-     -_  /\n   ~  \\ //  ~\n_- -   | | _- _\n  _ -  | |   -_\n      // \\\n";
+    file.close();
 }

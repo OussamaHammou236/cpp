@@ -29,8 +29,8 @@ RobotomyRequestForm:: ~RobotomyRequestForm()
 
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
-    if (executor.getGrade() > _GToExecute) // to solve the problem of the grade
-        throw Bureaucrat::GradeTooLowException();
+    if (executor.getGrade() > _GToExecute)
+        throw GradeTooLowException();
     std::cout << "Zzzzzzzzzzzzz..." << std::endl;
     srand(time(NULL));
     int random = rand() % 2;

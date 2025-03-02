@@ -32,5 +32,10 @@ int main()
     {
         std::cerr << e.what() << '\n';
     }
+    catch(const char *e)
+    {
+        std::cerr << e << '\n';
+    }
+    return 0;
     
 }
