@@ -54,16 +54,14 @@ void Bureaucrat:: increment_grade()
 {
     if (_grade < 2)
         throw GradeTooLowException();
-    else
-        _grade--;
+    _grade--;
 }
 
 void Bureaucrat:: decrement_grade()
 {
     if (_grade + 1 > 150)
         throw GradeTooLowException();
-    else
-        _grade++;
+    _grade++;
 }
 
 std::string Bureaucrat:: getName() const

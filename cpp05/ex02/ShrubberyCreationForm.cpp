@@ -30,7 +30,7 @@ ShrubberyCreationForm:: ~ShrubberyCreationForm()
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
     if (executor.getGrade() > 137)
-        throw Bureaucrat::GradeTooLowException();
+        throw GradeTooLowException();
     else
     {
         std::string name = _target + "_shrubbery";
