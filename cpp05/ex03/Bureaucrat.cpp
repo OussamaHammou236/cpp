@@ -8,9 +8,9 @@ Bureaucrat:: Bureaucrat() : _name("default")
 Bureaucrat:: Bureaucrat(std::string name, int grade) : _name(name)
 {
     if (grade < 1)
-        throw Bureaucrat::GradeTooLowException();
-    else if (grade > 150)
        throw Bureaucrat::GradeTooHighException();
+    else if (grade > 150)
+        throw Bureaucrat::GradeTooLowException();
     else
         _grade = grade;
 }
@@ -25,9 +25,9 @@ Bureaucrat &Bureaucrat:: operator=(Bureaucrat &instance)
     if (this == &instance)
         return (*this);
     if (instance._grade < 1)
-        throw GradeTooLowException();
-    else if (instance._grade > 150)
        throw GradeTooHighException();
+    else if (instance._grade > 150)
+        throw GradeTooLowException();
     else
         _grade = instance.getGrade();
     return (*this);

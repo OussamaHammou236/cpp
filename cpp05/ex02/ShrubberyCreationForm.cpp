@@ -29,7 +29,7 @@ ShrubberyCreationForm:: ~ShrubberyCreationForm()
 
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
-    if (executor.getGrade() > 137)
+    if (executor.getGrade() > _GToExecute)
         throw GradeTooLowException();
     else
     {
