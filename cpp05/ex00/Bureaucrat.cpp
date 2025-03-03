@@ -8,9 +8,9 @@ Bureaucrat:: Bureaucrat() : _name("default")
 Bureaucrat:: Bureaucrat(std::string name, int grade) : _name(name)
 {
     if (grade < 1)
-        throw Bureaucrat::GradeTooLowException();
+       throw GradeTooHighException();
     else if (grade > 150)
-       throw Bureaucrat::GradeTooHighException();
+        throw GradeTooLowException();
     else
         _grade = grade;
 }
@@ -25,9 +25,9 @@ Bureaucrat &Bureaucrat:: operator=(Bureaucrat &instance)
     if (this == &instance)
         return (*this);
     if (instance._grade < 1)
-        throw GradeTooLowException();
-    else if (instance._grade > 150)
        throw GradeTooHighException();
+    else if (instance._grade > 150)
+        throw GradeTooLowException();
     else
         _grade = instance.getGrade();
     return (*this);
@@ -40,20 +40,20 @@ Bureaucrat:: ~Bureaucrat()
 
 const char* Bureaucrat:: GradeTooHighException:: what()  const throw()
 {
-    const char *err = "invalid grad: is it too High";
+    const char *err = "Invalid Grade: Too High!";
     return (err); 
 }
 
 const char* Bureaucrat:: GradeTooLowException:: what()  const throw()
 {
-    const char *err = "invalid grad: is it too Low";
+    const char *err = "Invalid Grade: Too Low!";
     return (err); 
 }
 
 void Bureaucrat:: increment_grade()
 {
     if (_grade < 2)
-        throw GradeTooLowException();
+        throw GradeTooHighException();
     else
         _grade--;
 }
