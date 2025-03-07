@@ -7,17 +7,19 @@ int main(int ac, char **av)
         std::cerr << "Error: Invalid number of arguments\n";
         return 1;
     }
+    std::string arg = av[1];
     try
     {
-        // if ()
-            ScalarConverte::ParseInput(av[1]);
-        // else 
-            // hand_char();
+        if (arg.length() > 1 && isdigit(arg[0]))
+        {
+            ScalarConverte::ParseInput(arg);
+            ScalarConverte::handle_number(atof(arg.c_str()));
+        }
+        else 
+            ScalarConverte::handle_char(arg[0]);
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
     }
-    float f = .5f;
-    std::cout << f << std::endl;
 }

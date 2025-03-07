@@ -47,3 +47,42 @@ const char *ScalarConverte::ImpossibleException::what() const throw()
 {
     return "impossible";
 }
+
+void ScalarConverte:: handle_char(int c)
+{
+    if (isprint(c))
+    {
+        char cc = static_cast<char>(c);
+        std::cout << "char: '" << cc << "'" << std::endl;
+    }
+    else
+        std::cout << "char: Non displayable" << std::endl;
+    int i = static_cast<int>(c);
+    float f = static_cast<float>(c);
+    double d = static_cast<double>(c);
+    std::cout << "int: " << i << std::endl;
+    std::cout << "float: " << f << ".0f" << std::endl;
+    std::cout << "double: " << d << ".0" << std::endl;
+
+}
+
+void ScalarConverte:: handle_number(double i)
+{
+    double intpart;
+    double frac = modf(i, &intpart);
+
+    if (i > INT_MAX || i < INT_MIN)
+        std::cout << "int: impossible" << std::endl;
+    else
+        std::cout << "int: " << static_cast<int>(i) << std::endl;
+    if (i > FLT_MAX || i < FLT_MIN)
+        std::cout << "float: impossible" << std::endl;
+    else if (frac != 0.0)
+        std::cout << "float: " << static_cast<float>(i) << "f" << std::endl;
+    else
+        std::cout << "float: " << static_cast<float>(i) << ".0f" << std::endl;
+    if (frac != 0.0)
+        std::cout << "double: " << static_cast<double>(i) << std::endl;
+    else
+        std::cout << "double: " << static_cast<double>(i) << ".0" << std::endl;
+}
