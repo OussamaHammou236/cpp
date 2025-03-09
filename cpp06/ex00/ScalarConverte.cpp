@@ -50,11 +50,9 @@ const char *ScalarConverte::ImpossibleException::what() const throw()
 
 void ScalarConverte:: handle_char(int c)
 {
-    if (isprint(c))
-    {
-        char cc = static_cast<char>(c);
+    char cc = static_cast<char>(c);
+    if (isprint(cc))
         std::cout << "char: '" << cc << "'" << std::endl;
-    }
     else
         std::cout << "char: Non displayable" << std::endl;
     int i = static_cast<int>(c);
@@ -71,6 +69,7 @@ void ScalarConverte:: handle_number(double i)
     double intpart;
     double frac = modf(i, &intpart);
 
+    std::cout << "char: " << static_cast<char>(i) << std::endl;
     if (i > INT_MAX || i < INT_MIN)
         std::cout << "int: impossible" << std::endl;
     else
