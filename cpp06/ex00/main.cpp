@@ -10,7 +10,7 @@ int main(int ac, char **av)
     std::string arg = av[1];
     try
     {
-        if (arg.length() > 1 && isdigit(arg[0]))
+        if (arg.length() > 1 && isValid(arg[0]))
         {
             ScalarConverte::ParseInput(arg);
             ScalarConverte::handle_number(atof(arg.c_str()));

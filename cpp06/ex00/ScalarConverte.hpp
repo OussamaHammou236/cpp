@@ -26,4 +26,6 @@ class ScalarConverte : public std::exception
         };
 };
 
+bool isValid(char c);
+
 #endif
