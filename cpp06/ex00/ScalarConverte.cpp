@@ -1,9 +1,29 @@
 #include "ScalarConverte.hpp"
 
+
+ScalarConverte::ScalarConverte()
+{
+}
+
+ScalarConverte::ScalarConverte(const ScalarConverte &other)
+{
+    *this = other;
+}
+
+ScalarConverte &ScalarConverte::operator=(const ScalarConverte &other)
+{
+    (void)other;
+    return *this;
+}
+
+ScalarConverte::~ScalarConverte()
+{
+}
+
 int ScalarConverte::_sign = 1;
 bool ScalarConverte::_isPoint = 0;
 
-bool isValid(char c)
+bool ScalarConverte::isValid(char c)
 {
     return ((c >= '0' && c <= '9') || c == '.' || c == 'f');
 }
@@ -50,12 +70,9 @@ void ScalarConverte:: handle_char(int c)
         std::cout << "char: '" << cc << "'" << std::endl;
     else
         std::cout << "char: Non displayable" << std::endl;
-    int i = static_cast<int>(c);
-    float f = static_cast<float>(c);
-    double d = static_cast<double>(c);
-    std::cout << "int: " << i << std::endl;
-    std::cout << "float: " << f << ".0f" << std::endl;
-    std::cout << "double: " << d << ".0" << std::endl;
+    std::cout << "int: " << static_cast<int>(c) << std::endl;
+    std::cout << "float: " << static_cast<float>(c) << ".0f" << std::endl;
+    std::cout << "double: " << static_cast<double>(c) << ".0" << std::endl;
 
 }
 
@@ -64,7 +81,7 @@ void ScalarConverte:: handle_number(double i)
     double intpart;
     double frac = modf(i, &intpart);
 
-    if (isprint(static_cast<char>(i)))
+    if (isprint(static_cast<char>(i)) && i < CHAR_MAX && i > CHAR_MIN)
         std::cout << "char: '" << static_cast<char>(i) << "'" << std::endl;
     else
         std::cout << "char: Non displayable" << std::endl;
@@ -98,9 +115,11 @@ void ScalarConverte:: convert(std::string arg)
     }
     else if (arg.length() > 1 && (isValid(arg[0]) || arg[0] == '+' || arg[0] == '-'))
     {
-        ScalarConverte::ParseInput(arg);
-        ScalarConverte::handle_number(atof(arg.c_str()));
+        ParseInput(arg);
+        handle_number(atof(arg.c_str()));
     }
-    else 
-        ScalarConverte::handle_char(arg[0]);
+    else if (arg.length() == 1)
+        handle_char(arg[0]);
+    else
+        throw ImpossibleException();
 }
