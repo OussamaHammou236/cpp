@@ -31,7 +31,21 @@ void identify(Base* p)
         std::cout << "Unknown type" << std::endl;
 }
 
+void identify(Base& p)
+{
+    if (dynamic_cast<A*>(&p))
+        std::cout << "the actual type is A" << std::endl;
+    else if (dynamic_cast<B*>(&p))
+        std::cout << "the actual type is B" << std::endl;
+    else if (dynamic_cast<C*>(&p))
+        std::cout << "the actual type is C" << std::endl;
+    else
+        std::cout << "Unknown type" << std::endl;   
+}
+
 int main()
 {
-
+    Base *obj = generate();
+    identify(obj);
+    identify(*obj);
 }
