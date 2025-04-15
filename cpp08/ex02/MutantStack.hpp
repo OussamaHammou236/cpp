@@ -2,33 +2,48 @@
 #define MUTANTSTACK_HPP
 
 #include <iostream>
+#include <stack>
 #include <vector>
 
 template <typename T>
-class MutantStack
+class MutantStack : public std::stack<T>
 {
-    private:
-      std::vector<T> stack;  
     public:
-        void push(T nb)
+        typedef typename std::deque<T>::iterator iterator;
+        typedef typename std::deque<T>::const_iterator const_iterator;
+        typedef typename std::deque<T>::reverse_iterator reverse_iterator;
+        typedef typename std::deque<T>::const_reverse_iterator const_reverse_iterator;
+        iterator begin()
         {
-            stack.push_back(nb);
+            return this->c.begin();
         }
-        void pop()
+        iterator end()
         {
-            stack.pop_back();
+            return this->c.end();
         }
-        unsigned int size()
+        const_iterator cbegin()
         {
-            return stack.size();
+            return this->c.cbegin();
         }
-        std::vector<T>::iterator begin()
+        const_iterator cend()
         {
-            return stack.begin();
+            return this->c.cend();
         }
-        std::vector<T>::iterator end()
+        reverse_iterator rbegin()
         {
-            return stack.end();
+            return this->c.rbegin();
+        }
+        reverse_iterator rend()
+        {
+            return this->c.rend();
+        }
+        const_reverse_iterator crbegin()
+        {
+            return this->c.crbegin();
+        }
+        const_reverse_iterator crend()
+        {
+            return this->c.crend();
         }
 };
 
