@@ -106,12 +106,21 @@ void ScalarConverte:: convert(std::string arg)
     for (int i = 0;arg[i]; i++)
         if (!isprint(arg[i]))
             throw ImpossibleException();
-    if (arg ==  "nan" || arg == "-inff" || arg == "+inff" || arg == "inf")
+    if (arg ==  "nan" || arg == "-inff" || arg == "+inff" || arg == "nanf"
+        || arg == "+inf" || arg == "-inf")
     {
         std::cout << "char: impossible" << std::endl;
         std::cout << "int: impossible" << std::endl;
-        std::cout << "float: " << arg << std::endl;
-        std::cout << "double: " << arg << std::endl;
+        if (arg == "-inf" || arg == "+inf" || arg == "nan")
+        {
+            std::cout << "float: " << arg << "f" << std::endl;
+            std::cout << "double: " << arg << std::endl;
+        }
+        else
+        {
+            std::cout << "float: " << arg << std::endl;
+            std::cout << "double: " << arg.erase(arg.length() - 1) << std::endl;
+        }
     }
     else if (arg.length() > 1 && (isValid(arg[0]) || arg[0] == '+' || arg[0] == '-'))
     {

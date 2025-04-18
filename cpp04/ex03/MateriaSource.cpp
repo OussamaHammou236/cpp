@@ -21,7 +21,6 @@ void MateriaSource:: learnMateria(AMateria *matria)
             delete matria;
             return ;
         }
-
     }
 }
 

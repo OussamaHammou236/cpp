@@ -32,6 +32,4 @@ class ScalarConverte
         };
 };
 
-bool isValid(char c);
-
 #endif

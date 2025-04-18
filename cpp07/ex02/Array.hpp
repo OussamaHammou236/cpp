@@ -39,6 +39,11 @@ class Array
             for(int i = 0; i < n; i++)
                 array[i] = instance.array[i];
         }
+        ~Array()
+        {
+            if (n && array)
+                delete[] array;
+        }
         T &operator[](long i)
         {
             if (i >= n || i < 0)

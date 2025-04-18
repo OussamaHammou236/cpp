@@ -7,45 +7,59 @@
 
 Base * generate(void)
 {
-    std::srand(std::time(0));
 
-    int min = 1, max = 3;
-    int randomNum = min + std::rand() % (max - min + 1);
-    if (randomNum == 1)
-        return new A;
-    else if (randomNum == 2)
-        return new B;
-    else
-        return new C;
+	std::cout << "time : " << std::time(0) << std::endl;
+	std::srand(std::time(NULL));
+
+	int randomNum = rand() % 3;
+	if (randomNum == 1)
+		return new A;
+	else if (randomNum == 2)
+		return new B;
+	else
+		return new C;
 }
 
 void identify(Base* p)
 {
-    if (dynamic_cast<A*>(p))
-        std::cout << "the actual type is A" << std::endl;
-    else if (dynamic_cast<B*>(p))
-        std::cout << "the actual type is B" << std::endl;
-    else if (dynamic_cast<C*>(p))
-        std::cout << "the actual type is C" << std::endl;
-    else
-        std::cout << "Unknown type" << std::endl;
+	if (dynamic_cast<A*>(p))
+		std::cout << "the actual type is A" << std::endl;
+	else if (dynamic_cast<B*>(p))
+		std::cout << "the actual type is B" << std::endl;
+	else if (dynamic_cast<C*>(p))
+		std::cout << "the actual type is C" << std::endl;
+	else
+		std::cout << "Unknown type" << std::endl;
 }
 
 void identify(Base& p)
 {
-    if (dynamic_cast<A*>(&p))
-        std::cout << "the actual type is A" << std::endl;
-    else if (dynamic_cast<B*>(&p))
-        std::cout << "the actual type is B" << std::endl;
-    else if (dynamic_cast<C*>(&p))
-        std::cout << "the actual type is C" << std::endl;
-    else
-        std::cout << "Unknown type" << std::endl;   
+	try
+	{
+		(void)dynamic_cast<A&>(p);
+		std::cout << "the actual type is A" << std::endl;
+	}
+	catch(const std::exception& e)
+	{}
+	try
+	{
+		(void)dynamic_cast<B&>(p);
+		std::cout << "the actual type is B" << std::endl;
+	}
+	catch(const std::exception& e)
+	{}
+	try
+	{
+		(void)dynamic_cast<C&>(p);
+		std::cout << "the actual type is C" << std::endl;
+	}
+	catch(const std::exception& e)
+	{}
 }
 
 int main()
 {
-    Base *obj = generate();
-    identify(obj);
-    identify(*obj);
+	Base *obj = generate();
+	identify(obj);
+	identify(*obj);
 }

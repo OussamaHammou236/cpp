@@ -22,10 +22,11 @@ Serializer ::~Serializer()
 
 Serializer ::Serializer(Serializer &instance)
 {
-
+    (void)instance;
 }
 
 Serializer& Serializer:: operator=(Serializer &instance)
 {
-
+    (void)instance;
+    return (*this);
 }
