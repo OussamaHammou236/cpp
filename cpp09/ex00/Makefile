@@ -1,5 +1,5 @@
 all:
-	c++ main.cpp -o btc
+	c++ main.cpp BitcoinExchange.cpp -o btc
 
 fclean:
 	rm -rf btc
