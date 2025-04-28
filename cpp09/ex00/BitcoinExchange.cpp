@@ -1,7 +1,8 @@
 #include "BitcoinExchange.hpp"
 
 std::map<std::string, float> BitcoinExchange:: btc;
-
+double BitcoinExchange::Value = 0;
+std::string BitcoinExchange::Date;
 // ortodox form
 BitcoinExchange:: BitcoinExchange() {}
 BitcoinExchange:: ~BitcoinExchange() {}
@@ -36,11 +37,17 @@ void BitcoinExchange:: ReadDataBase()
     {
         add_line(data);
     }
-    // std::map<std::string, float>::iterator it;
-    // for (it = btc.begin(); it != btc.end(); ++it) {
-    //     std::cout << "Key: " << it->first << " Value: " << it->second << std::endl;
-    // }
     database.close();
+}
+
+void BitcoinExchange:: CalculateTheBtc()
+{
+    std::map<std::string, float>::iterator it = btc.lower_bound(Date);
+    float value = it->second;
+    if (Date < btc.begin()->first)
+        std::cout << Date << " => " << Value << " = " << 0 << std::endl;
+    else
+        std::cout << Date << " => " << Value << " = " << Value * value << std::endl;
 }
 
 void BitcoinExchange:: ParsTheData(std::string data)
@@ -60,17 +67,26 @@ void BitcoinExchange:: ParsTheData(std::string data)
     date.erase(date.length() - 1);
     char* end = strptime(date.c_str(), "%Y-%m-%d", &tm);
     if (!end || *end != '\0')
-        throw std::string("Error: bad input => " + date);
+        throw std::string("Error: bbad input => " + date);
     while (num[0] && num[0] == ' ')
         num.erase(0, 1);
     while (num[num.length() - 1] && num[num.length() - 1] == ' ')
         num.erase(num.length() - 1, 1);
+    while (date[0] && date[0] == ' ')
+        date.erase(0, 1);
+    while (date[date.length() - 1] && date[date.length() - 1] == ' ')
+        date.erase(date.length() - 1, 1);
     for (int i = 0; num[i]; i++)
         if (!isdigit(num[i]) && num[i] != '.' && num[i] != '-')
             throw std::string("ERROR: entre namber");
-    // std::cout << atof(num.c_str()) << std::endl;
-
-
+    if (!num[0] || !date[0])
+        throw std::string("ERROR: you forget data&value");
+    Value = atof(num.c_str());
+    if (Value < 0)
+        throw std::string("Error: not a positive number.");
+    if (Value > 1000)
+        throw std::string("Error: too large a number.");
+    Date = date;
 }
 
 void BitcoinExchange:: ReadInputFile(std::string filename)
@@ -85,6 +101,7 @@ void BitcoinExchange:: ReadInputFile(std::string filename)
         try
         {
             ParsTheData(data);
+            CalculateTheBtc();
         }
         catch(std::string error)
         {

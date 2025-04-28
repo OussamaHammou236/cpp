@@ -17,13 +17,15 @@ class BitcoinExchange
         ~BitcoinExchange();
 
         static std::map<std::string, float> btc;
+        static double Value;
+        static std::string Date;
         static void add_line(std::string line);
         static void ParsTheData(std::string data);
+        static void CalculateTheBtc();
 
     public:
         static void ReadDataBase();
         static void ReadInputFile(std::string filename);
-
 };
 
 #endif
