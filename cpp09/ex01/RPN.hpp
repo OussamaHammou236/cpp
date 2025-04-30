@@ -12,6 +12,13 @@ class RPN
     public:
         int rpn(std::string str);
         void operators(char c);
+
+
+        RPN();
+        RPN(std::stack<int> &stack);
+        RPN(RPN &instance);
+        ~RPN();
+        RPN& operator=(RPN &instance);
 };
 
 #endif

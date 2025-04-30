@@ -14,6 +14,11 @@ class PmergeMe
         std::vector<int> merge;
 
     public:
+        PmergeMe();
+        PmergeMe(std::vector<int> &Merge);
+        PmergeMe(PmergeMe &instance);
+        ~PmergeMe();
+        PmergeMe& operator=(PmergeMe &instance);
         void ParsInput(char **av);
         void IsNumber(std::string str);
         void SortFirstContainer();

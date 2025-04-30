@@ -55,3 +55,9 @@ int RPN:: rpn(std::string str)
         throw std::string("ERROR");
     return stack.top();
 }
+
+RPN:: RPN() {}
+RPN:: RPN(std::stack<int> &stack) { this->stack = stack;}
+RPN& RPN:: operator=(RPN &instance) { stack = instance.stack;}
+RPN:: RPN(RPN &instance) { *this = instance;}
+RPN:: ~RPN() {}

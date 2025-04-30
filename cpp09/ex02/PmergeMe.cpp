@@ -91,3 +91,9 @@ void PmergeMe:: SortSecondContainer()
     end = clock();
     std::cout << "Time to process a range of " << merge.size() << " elements with std::deque : "<< end - start << " us" << std::endl;
 }
+
+PmergeMe:: PmergeMe() {}
+PmergeMe:: PmergeMe(std::vector<int> &Merge) { merge = Merge;}
+PmergeMe& PmergeMe:: operator=(PmergeMe &instance) { merge = instance.merge;}
+PmergeMe:: PmergeMe(PmergeMe &instance) { *this = instance;}
+PmergeMe:: ~PmergeMe() {}
