@@ -5,6 +5,9 @@
 #include <vector>
 #include <exception>
 #include <algorithm>
+#include <ctime>
+#include <deque>
+
 class PmergeMe
 {
     private:
@@ -14,6 +17,7 @@ class PmergeMe
         void ParsInput(char **av);
         void IsNumber(std::string str);
         void SortFirstContainer();
+        void PrintVector(std::vector<int> &container);
         void SortSecondContainer();
 };
 

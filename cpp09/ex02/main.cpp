@@ -8,6 +8,7 @@ int main(int ac, char **av)
 
         obj.ParsInput(av);
         obj.SortFirstContainer();
+        obj.SortSecondContainer();
     }
     catch(std::string error)
     {
