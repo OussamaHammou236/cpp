@@ -14,7 +14,7 @@ void Span::addNumber(int number)
 void Span::print_numbers()
 {
     for (int i = 0; i < vec.size(); i++)
-        std::cout << vec[i] << std::endl;
+        std::cout << "number[" << i << "] = "<< vec[i] << std::endl;
 }
 
 int Span::longestSpan()

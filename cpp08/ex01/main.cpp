@@ -4,12 +4,12 @@ int main()
 {
     try
     {
-        Span<std::vector<int>> span(3);
+        Span span(3);
         span.addNumber(32);
         span.addNumber(21);
         span.addNumber(213);
         span.print_numbers();
-        std::cout << span.longestSpan() << "  " <<span.shortestSpan() <<std::endl;
+        std::cout << "longest span: " << span.longestSpan() << " shortest span: " <<span.shortestSpan() <<std::endl;
     }
     catch(std::exception &e)
     {
