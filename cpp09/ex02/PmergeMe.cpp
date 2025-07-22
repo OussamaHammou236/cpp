@@ -35,10 +35,21 @@ void PmergeMe:: PrintVector(std::vector<int> &container)
     std::cout << std::endl;
 }
 
+void buildOpstackSequence(int start, int end, std::vector<int>& sequence)
+{
+    if (start > end) return;
+
+    int mid = (start + end) / 2;
+    sequence.push_back(mid);
+    buildOpstackSequence(start, mid - 1, sequence);
+    buildOpstackSequence(mid + 1, end, sequence);
+}
+
 void PmergeMe:: SortFirstContainer()
 {
     std::vector<int> MaxNb;
     std::vector<int> MinNb;
+    std::vector<int> sequence;
     clock_t start = clock();
     clock_t end;
     for (std::vector<int>::iterator it = merge.begin(); it != merge.end();++it)
@@ -54,10 +65,11 @@ void PmergeMe:: SortFirstContainer()
         MaxNb.push_back(std::max(first, second));
     }
     std::sort(MaxNb.begin(), MaxNb.end());
-    for (std::vector<int>::iterator min = MinNb.begin(); min < MinNb.end(); ++min)
+    buildOpstackSequence(0, MinNb.size() - 1, sequence);
+    for (std::vector<int>::iterator it = sequence.begin(); it != sequence.end(); it++)
     {
-        std::vector<int>::iterator it = std::lower_bound(MaxNb.begin(), MaxNb.end(), *min);
-        MaxNb.insert(it, *min);
+        std::vector<int>::iterator its = std::lower_bound(MaxNb.begin(), MaxNb.end(), MinNb.at(*it));
+        MaxNb.insert(its, MinNb.at(*it));
     }
     end = clock();
     PrintVector(MaxNb);
@@ -94,6 +106,6 @@ void PmergeMe:: SortSecondContainer()
 
 PmergeMe:: PmergeMe() {}
 PmergeMe:: PmergeMe(std::vector<int> &Merge) { merge = Merge;}
-PmergeMe& PmergeMe:: operator=(PmergeMe &instance) { merge = instance.merge;}
+PmergeMe& PmergeMe:: operator=(PmergeMe &instance) { merge = instance.merge; return *this;}
 PmergeMe:: PmergeMe(PmergeMe &instance) { *this = instance;}
 PmergeMe:: ~PmergeMe() {}
