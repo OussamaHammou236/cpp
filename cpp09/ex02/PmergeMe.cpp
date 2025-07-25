@@ -22,10 +22,63 @@ void PmergeMe:: ParsInput(char **av)
     }
     std::cout << std::endl;
 }
-/* 
-"43 2 45 34"
 
-*/
+std::vector<int> buildJacobsthalSequence(int n) {
+    std::vector<int> seq;
+    seq.push_back(0); // usually start by inserting the first min element
+    int j1 = 1, j2 = 3;
+    while (j2 < n) {
+        seq.push_back(j2 - 1); // indices are offset by -1
+        int temp = j2;
+        j2 = j2 + 2 * j1;
+        j1 = temp;
+    }
+    // fill remaining indices
+    for (int i = 1; i < n; ++i)
+        if (std::find(seq.begin(), seq.end(), i) == seq.end())
+            seq.push_back(i);
+    return seq;
+}
+
+
+std::vector<int> PmergeMe:: mergeInsert(std::vector<int> &nbs)
+{
+    std::vector<int> MaxNb;
+    std::vector<int> MinNb;
+    std::vector<int> sortedNb;
+    std::vector<int>::iterator seqIt;
+    if (nbs.size() <= 1)
+        return nbs;
+    for (std::vector <int>::iterator it = nbs.begin(); it != nbs.end();it++)
+    {
+        int first = *it;
+        int second = -1;
+        if (it + 1 != nbs.end())
+        {
+            second = *(it + 1);
+            MinNb.push_back(std::min(first, second));
+            MaxNb.push_back(std::max(first, second));
+            ++it;
+        }
+        else
+            MaxNb.push_back(first);
+    }
+    sortedNb = mergeInsert(MaxNb);
+    seqIt = sequence.begin();
+    int fg;
+    for (int i = 0;i < MinNb.size(); i++)
+    {
+        if (fg < sequence.size())
+        {
+            std::vector<int>::iterator its = std::lower_bound(sortedNb.begin(), sortedNb.end(), MinNb[sequence[fg]]);
+            sortedNb.insert(its, MinNb[sequence[fg]]);
+            fg++;
+        }
+        else
+            fg = sequence.size() - 1;
+    }
+    return sortedNb;
+}
 
 void PmergeMe:: PrintVector(std::vector<int> &container)
 {
@@ -35,73 +88,24 @@ void PmergeMe:: PrintVector(std::vector<int> &container)
     std::cout << std::endl;
 }
 
-void buildOpstackSequence(int start, int end, std::vector<int>& sequence)
-{
-    if (start > end) return;
-
-    int mid = (start + end) / 2;
-    sequence.push_back(mid);
-    buildOpstackSequence(start, mid - 1, sequence);
-    buildOpstackSequence(mid + 1, end, sequence);
-}
-
 void PmergeMe:: SortFirstContainer()
 {
-    std::vector<int> MaxNb;
+    std::vector<int> sortedVector;
     std::vector<int> MinNb;
-    std::vector<int> sequence;
     clock_t start = clock();
     clock_t end;
-    for (std::vector<int>::iterator it = merge.begin(); it != merge.end();++it)
-    {
-        int first = *it;
-        int second = -1;
-        if (it + 1 != merge.end())
-        {
-            second = *(it + 1);
-            MinNb.push_back(std::min(first, second));
-            ++it;
-        }
-        MaxNb.push_back(std::max(first, second));
-    }
-    std::sort(MaxNb.begin(), MaxNb.end());
-    buildOpstackSequence(0, MinNb.size() - 1, sequence);
-    for (std::vector<int>::iterator it = sequence.begin(); it != sequence.end(); it++)
-    {
-        std::vector<int>::iterator its = std::lower_bound(MaxNb.begin(), MaxNb.end(), MinNb.at(*it));
-        MaxNb.insert(its, MinNb.at(*it));
-    }
+    sequence.push_back(0);
+    sequence.push_back(1);
+    for (int i = 2;i < merge.size() + 2; i++)
+        sequence.push_back(sequence.at(i - 1) + (2 * sequence.at(i - 2)));
+    sequence.erase(sequence.begin());
+    sequence.erase(sequence.begin());
+    for (int i = 0; i < sequence.size(); i++)
+        std::cout << "--> " << sequence.at(i) << std::endl;
+    sortedVector = mergeInsert(merge);
     end = clock();
-    PrintVector(MaxNb);
+    PrintVector(sortedVector);
     std::cout << "Time to process a range of " << merge.size() << " elements with std::vector : "<< end - start << " us" << std::endl;
-}
-
-void PmergeMe:: SortSecondContainer()
-{
-    std::deque<int> MaxNb;
-    std::deque<int> MinNb;
-    clock_t start = clock();
-    clock_t end;
-    for (std::vector <int>::iterator it = merge.begin(); it != merge.end();++it)
-    {
-        int first = *it;
-        int second = -1;
-        if (it + 1 != merge.end())
-        {
-            second = *(it + 1);
-            MinNb.push_back(std::min(first, second));
-            ++it;
-        }
-        MaxNb.push_back(std::max(first, second));
-    }
-    std::sort(MaxNb.begin(), MaxNb.end());
-    for (std::deque<int>::iterator min = MinNb.begin(); min < MinNb.end(); ++min)
-    {
-        std::deque<int>::iterator it = std::lower_bound(MaxNb.begin(), MaxNb.end(), *min);
-        MaxNb.insert(it, *min);
-    }
-    end = clock();
-    std::cout << "Time to process a range of " << merge.size() << " elements with std::deque : "<< end - start << " us" << std::endl;
 }
 
 PmergeMe:: PmergeMe() {}
@@ -109,3 +113,4 @@ PmergeMe:: PmergeMe(std::vector<int> &Merge) { merge = Merge;}
 PmergeMe& PmergeMe:: operator=(PmergeMe &instance) { merge = instance.merge; return *this;}
 PmergeMe:: PmergeMe(PmergeMe &instance) { *this = instance;}
 PmergeMe:: ~PmergeMe() {}
+

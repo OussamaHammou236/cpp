@@ -12,6 +12,7 @@ class PmergeMe
 {
     private:
         std::vector<int> merge;
+        std::vector<int> sequence;
 
     public:
         PmergeMe();
@@ -23,8 +24,8 @@ class PmergeMe
         void IsNumber(std::string str);
         void SortFirstContainer();
         void PrintVector(std::vector<int> &container);
-        void SortSecondContainer();
-
+        // void SortSecondContainer();
+        std::vector<int> mergeInsert(std::vector<int> &nbs);
 };
 
 #endif
