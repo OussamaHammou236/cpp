@@ -3,7 +3,6 @@
 std::map<std::string, float> BitcoinExchange:: btc;
 double BitcoinExchange::Value = 0;
 std::string BitcoinExchange::Date;
-// ortodox form
 BitcoinExchange:: BitcoinExchange() {}
 BitcoinExchange:: ~BitcoinExchange() {}
 BitcoinExchange:: BitcoinExchange(BitcoinExchange &instance)
@@ -63,7 +62,7 @@ void BitcoinExchange:: ParsTheData(std::string data)
     date = data.substr(0, pos);
     num = data.substr(pos + 1);
     if (num[0] != ' ' || date[date.length() - 1] != ' ')
-        throw std::string("Error: your forma not correct, the correct forma is data | value");
+        throw std::string("Error: date format not correct, the correct forma is data | value");
     date.erase(date.length() - 1);
     char* end = strptime(date.c_str(), "%Y-%m-%d", &tm);
     if (!end || *end != '\0')
