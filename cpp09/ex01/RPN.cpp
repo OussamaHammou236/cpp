@@ -58,6 +58,6 @@ int RPN:: rpn(std::string str)
 
 RPN:: RPN() {}
 RPN:: RPN(std::stack<int> &stack) { this->stack = stack;}
-RPN& RPN:: operator=(RPN &instance) { stack = instance.stack;}
+RPN& RPN:: operator=(RPN &instance) { stack = instance.stack; return *this;}
 RPN:: RPN(RPN &instance) { *this = instance;}
 RPN:: ~RPN() {}

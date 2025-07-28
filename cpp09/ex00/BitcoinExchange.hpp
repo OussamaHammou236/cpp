@@ -7,6 +7,7 @@
 #include <map>
 #include <sstream>
 #include <ctime>
+#include <cstdlib>
 
 class BitcoinExchange
 {
@@ -22,6 +23,7 @@ class BitcoinExchange
         static void add_line(std::string line);
         static void ParsTheData(std::string data);
         static void CalculateTheBtc();
+        static void CheckDate();
 
     public:
         static void ReadDataBase();

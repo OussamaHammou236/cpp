@@ -12,7 +12,7 @@ class PmergeMe
 {
     private:
         std::vector<int> merge;
-        std::vector<int> sequence;
+        std::vector<size_t> sequence;
 
     public:
         PmergeMe();
@@ -60,7 +60,6 @@ class PmergeMe
         template<typename T>
         void PrintVector(T &container)
         {
-            std::cout << "After: ";
             for (typename T::iterator it = container.begin(); it < container.end(); ++it)
                 std::cout << *it << " ";
             std::cout << std::endl;

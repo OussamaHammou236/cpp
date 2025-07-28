@@ -1,5 +1,5 @@
 all:
-	c++ main.cpp PmergeMe.cpp -o PmergeMe
+	c++ -Wall -Wextra -Werror -std=c++98 main.cpp PmergeMe.cpp -o PmergeMe
 
 fclean:
 	rm -rf PmergeMe
