@@ -51,6 +51,9 @@ void BitcoinExchange:: CheckDate()
     int day = atoi(dateBuf.c_str());
     if (year % 4 == 0 && month == 2 && day > 28)
         throw std::string("ERROR !");
+    int days_in_month[] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
+    if (day > days_in_month[month - 1])
+        throw std::string("ERROR: Invalid day in date!");
 }
 
 void BitcoinExchange:: CalculateTheBtc()
@@ -102,7 +105,6 @@ void BitcoinExchange:: ParsTheData(std::string data)
     if (Value > 1000)
         throw std::string("Error: too large a number.");
     Date = date;
-    // std::cout << Date << std::endl;
 }
 
 void BitcoinExchange:: ReadInputFile(std::string filename)
