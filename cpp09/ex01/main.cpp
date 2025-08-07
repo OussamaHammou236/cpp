@@ -7,7 +7,8 @@ int main(int ac, char **ar)
     RPN obj;
     try
     {
-        obj.rpn(ar[1]);
+        int res = obj.rpn(ar[1]);
+        std::cout << res << std::endl;
     }
     catch(std::string error)
     {

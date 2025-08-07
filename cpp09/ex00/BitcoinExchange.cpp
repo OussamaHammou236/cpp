@@ -5,15 +5,8 @@ double BitcoinExchange::Value = 0;
 std::string BitcoinExchange::Date;
 BitcoinExchange:: BitcoinExchange() {}
 BitcoinExchange:: ~BitcoinExchange() {}
-BitcoinExchange:: BitcoinExchange(BitcoinExchange &instance)
-{
-    (void)instance;
-}
-BitcoinExchange& BitcoinExchange:: operator=(BitcoinExchange &instance)
-{
-    (void)instance;
-    return (*this);
-}
+BitcoinExchange:: BitcoinExchange(BitcoinExchange &) {}
+BitcoinExchange& BitcoinExchange:: operator=(BitcoinExchange &) {return (*this);}
 
 void BitcoinExchange:: add_line(std::string line)
 {
@@ -33,17 +26,16 @@ void BitcoinExchange:: ReadDataBase()
     if (!database.is_open())
         throw "file does not exist";
     while(getline(database, data))
-    {
         add_line(data);
-    }
     database.close();
 }
 
 void BitcoinExchange:: CheckDate()
 {
-    std::string dateBuf = Date;
-    size_t yearFind = dateBuf.find("-");
-    int year = atoi(dateBuf.substr(0, yearFind).c_str());
+    std::string dateBuf   = Date;
+    size_t       yearFind = dateBuf.find("-");
+    int         year      = atoi(dateBuf.substr(0, yearFind).c_str());
+
     dateBuf.erase(0, ++yearFind);
     size_t monthFind = dateBuf.find("-");
     int month = atoi(dateBuf.substr(0, monthFind).c_str());
@@ -112,7 +104,6 @@ void BitcoinExchange:: ReadInputFile(std::string filename)
     std::ifstream input(filename.c_str());
     std::string data;
     int i = 0;
-    // input.open(filename.c_str());
     if (!input.is_open())
         throw "the input file does not exist";
     while (getline(input, data))

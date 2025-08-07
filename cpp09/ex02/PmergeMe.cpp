@@ -2,6 +2,8 @@
 
 void PmergeMe:: IsNumber(std::string str)
 {
+    if (!str[0])
+        throw std::string("ERROR");
     for (int i = 0; str[i]; i++)
     {
         if (!isdigit(str[i]))

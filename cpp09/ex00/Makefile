@@ -1,5 +1,18 @@
-all:
-	c++ -Wall -Wextra -Werror -std=c++98 main.cpp BitcoinExchange.cpp -o btc
+CXX= c++
+CXXFLAGS = -Wall -Wextra -Werror 
+NAME= btc
+SRC = main.cpp BitcoinExchange.cpp
+OBJ = $(SRC:.cpp=.o)
 
-fclean:
-	rm -rf btc
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
+
+clean:
+	rm -rf $(OBJ);
+
+fclean: clean
+	rm -rf $(NAME)
+
+re:  fclean all
